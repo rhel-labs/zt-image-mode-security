@@ -1,0 +1,44 @@
+= Image Mode Security and Compliance
+
+Welcome to the Security and Compliance lab for RHEL Image Mode! In this lab, you'll learn how to build security and compliance controls directly into your bootc images.
+
+== What You'll Learn
+
+In this lab, you will:
+
+1. **Add security controls** - Configure FAPolicyd for application allow-listing
+2. **Apply SCAP policies** - Use OpenSCAP to apply CIS compliance policies at build time
+3. **Test compliance** - Validate that your deployed system meets security requirements
+
+== Why Security at Build Time?
+
+Building security and compliance into images provides several advantages:
+
+* **Consistency** - Every system deployed from the image has the same security posture
+* **Immutability** - Security controls are baked in and can't be easily bypassed
+* **Auditability** - The image build process provides a clear record of security controls
+* **Efficiency** - Apply once at build time instead of configuring each system individually
+
+== Lab Environment
+
+Your lab environment includes:
+
+* **Build Host** - RHEL 10 system with a pre-configured bootc build environment
+* **Security VM** - Will be deployed during the lab with your security-hardened image
+
+[NOTE]
+====
+This lab builds on Image Mode fundamentals. If you're new to bootc, consider starting with the "Image Mode Fundamentals" lab first.
+====
+
+== Prerequisites
+
+Basic familiarity with:
+
+* RHEL Image Mode and bootc concepts
+* Security and compliance concepts (FAPolicyd, OpenSCAP, CIS benchmarks)
+* Text editors (nano or vim)
+
+== Ready to Begin?
+
+Click **Next** to start adding security controls to your bootc image!

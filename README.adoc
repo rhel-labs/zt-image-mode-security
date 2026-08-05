@@ -1,0 +1,38 @@
+= Image Mode Security and Compliance
+
+A hands-on lab for building security and compliance into RHEL Image Mode systems.
+
+== Lab Overview
+
+Learn how to apply security controls and compliance policies at build time using FAPolicyd and OpenSCAP.
+
+**Duration:** 20-25 minutes
+
+**What You'll Learn:**
+
+* Adding FAPolicyd for application allow-listing
+* Applying SCAP policies with oscap-im
+* Tailoring compliance profiles
+* Testing deployed systems for compliance
+
+== Lab Environment
+
+* **Build Host** - RHEL 10 with pre-configured build environment
+* **Security VM** - Automatically deployed from your security-hardened image
+
+== Prerequisites
+
+* Basic Image Mode familiarity (recommended: complete "Image Mode Fundamentals" first)
+* Understanding of security and compliance concepts
+
+== Lab Modules
+
+1. **Lab Introduction** - Security at build time overview
+2. **Adding Security Controls** - FAPolicyd and SCAP policy application
+3. **Testing Compliance** - Validating security controls work as expected
+
+== Related Labs
+
+* Image Mode Fundamentals (prerequisite)
+* Image Mode Runtime Operations
+* Image Mode Advanced Workflows

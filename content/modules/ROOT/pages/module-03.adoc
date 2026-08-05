@@ -1,0 +1,88 @@
+= Testing Security and Compliance
+
+Now that we've deployed our security-hardened system, let's verify that the security controls are working as expected.
+
+== Testing FAPolicyd
+==== _Click on the tab labeled "Security VM"_
+
+If you recall, our first task was to enable fapolicyd directly, let's see if it's working.
+
+The File Access Policy daemon's job is to prevent you from running unapproved applications. Out of the box, it does this using a relatively simple application allow-list that has known trusted paths for installed binaries.
+
+[source,bash,role="execute",subs=attributes+]
+----
+sudo fapolicyd-cli -l
+----
+
+Since the system software deployed on an image mode host is part of a read-only filesystem, we can't simply overwrite a binary with a trusted path.
+To test whether it's working, we can just take a known good binary, and put it somewhere odd, and then try to run it.
+
+[source,bash,role="execute",subs=attributes+]
+----
+cp /bin/ls ~
+----
+
+You should not be allowed to run `ls` from your home directory.
+
+[source,bash,role="execute",subs=attributes+]
+----
+~/ls
+----
+....
+-bash: /home/core/ls: Operation not permitted
+....
+
+Great! FAPolicyd works!
+
+== Testing SCAP Compliance
+
+We also went a step further, and applied an entire SCAP policy. The OpenSCAP tooling also allows us to test a system for compliance, so we can use that tool to see if the policy was applied as we expected it to be when the container was built.
+
+[source,bash,role="execute",subs=attributes+]
+----
+sudo oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_cis_server_l1 --results ./results  /usr/share/xml/scap/ssg/content/ssg-rhel10-ds.xml
+----
+
+[source,bash,role="execute",subs=attributes+]
+----
+sudo grep score results
+----
+
+You should see a score in the 90's like the output below:
+....
+    <score system="urn:xccdf:scoring:default" maximum="100.000000">92.530121</score>
+....
+
+== Understanding the Results
+
+A compliance score in the 90's is excellent for a CIS Level 1 baseline. Some rules may show as "fail" or "notapplicable" depending on:
+
+* **System configuration** - Some rules may not apply to virtual machines or specific deployment scenarios
+* **Policy tailoring** - We customized the policy to allow root login for lab purposes
+* **Runtime state** - Some checks evaluate runtime state that can't be fully configured at build time
+
+The key benefit is that **every system deployed from this image** will have this same baseline security configuration.
+
+== Core Principles
+
+You've now learned how to:
+
+* Build security controls directly into bootc images
+* Apply compliance policies at build time using OpenSCAP
+* Validate that deployed systems meet security requirements
+* Use FAPolicyd for application allow-listing
+
+This approach provides:
+
+* **Consistency** - All deployed systems start with the same security baseline
+* **Immutability** - Security controls can't be easily bypassed or disabled
+* **Efficiency** - Configure once at build time instead of repeatedly at deployment
+
+== Next Steps
+
+Now that you understand security at build time, you might want to explore:
+
+* **Runtime Operations** - Learn about transient packages and troubleshooting image mode systems
+* **Advanced Workflows** - Discover how to build derived images and use multi-stage builds
+
+Thank you for completing this lab!
