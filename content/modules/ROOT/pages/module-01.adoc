@@ -24,7 +24,7 @@ Building security and compliance into images provides several advantages:
 Your lab environment includes:
 
 * **Build Host** - RHEL 10 system with a pre-configured bootc build environment
-* **Security VM** - Will be deployed during the lab with your security-hardened image
+* **Bootc VM** - Will be deployed during the lab with your security-hardened image
 
 [NOTE]
 ====

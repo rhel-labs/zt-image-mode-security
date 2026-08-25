@@ -18,7 +18,7 @@ Learn how to apply security controls and compliance policies at build time using
 == Lab Environment
 
 * **Build Host** - RHEL 10 with pre-configured build environment
-* **Security VM** - Automatically deployed from your security-hardened image
+* **Bootc VM** - Automatically deployed from your security-hardened image
 
 == Prerequisites
 

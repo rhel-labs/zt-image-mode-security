@@ -14,13 +14,17 @@ podman run --rm --privileged --security-opt label=type:unconfined_t \
   --type qcow2 \
   registry-${GUID}.${DOMAIN}/base 2>&1 >> /tmp/progress.log
 
-cp -f qcow2/disk.qcow2 /var/lib/libvirt/images/security-vm.qcow2
+cp -f qcow2/disk.qcow2 /var/lib/libvirt/images/bootc-vm.qcow2
 
-virt-install --name security-vm \
-  --disk /var/lib/libvirt/images/security-vm.qcow2 \
+# Tear down the initial VM (created at setup) before redeploying the hardened image
+virsh destroy bootc-vm 2>/dev/null
+virsh undefine bootc-vm 2>/dev/null
+
+virt-install --name bootc-vm \
+  --disk /var/lib/libvirt/images/bootc-vm.qcow2 \
   --import --memory 4096 --graphics none \
   --osinfo rhel10-unknown --noautoconsole --noreboot 2>&1 >> /tmp/progress.log
 
-virsh start security-vm 2>&1 >> /tmp/progress.log
+virsh start bootc-vm 2>&1 >> /tmp/progress.log
 
-echo "Security VM deployed" >> /tmp/progress.log
+echo "Bootc VM deployed" >> /tmp/progress.log

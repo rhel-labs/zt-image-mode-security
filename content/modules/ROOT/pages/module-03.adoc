@@ -3,7 +3,7 @@
 Now that we've deployed our security-hardened system, let's verify that the security controls are working as expected.
 
 == Testing FAPolicyd
-==== _Click on the tab labeled "Security VM"_
+==== _Click on the tab labeled "Bootc VM"_
 
 If you recall, our first task was to enable fapolicyd directly, let's see if it's working.
 
