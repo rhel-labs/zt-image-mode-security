@@ -116,8 +116,8 @@ key = "$(cat ~/.ssh/${GUID}key.pub)"
 EOF
 
 # Tag and push the baseline image to the local registry
-podman tag ghcr.io/rhel-labs/im-workshop-ops:latest registry-${GUID}.${DOMAIN}/bootc
-podman push registry-${GUID}.${DOMAIN}/bootc
+podman tag ghcr.io/rhel-labs/im-workshop-ops:latest registry-${GUID}.${DOMAIN}/base
+podman push registry-${GUID}.${DOMAIN}/base
 
 # Build and deploy the initial VM from the baseline image
 cd ~
@@ -127,7 +127,7 @@ podman run --rm --privileged --security-opt label=type:unconfined_t \
   --volume .:/output \
   registry.redhat.io/rhel10/bootc-image-builder:10.1 \
   --type qcow2 \
-  registry-${GUID}.${DOMAIN}/bootc
+  registry-${GUID}.${DOMAIN}/base
 
 cp qcow2/disk.qcow2 /var/lib/libvirt/images/bootc-vm.qcow2
 
