@@ -80,6 +80,6 @@ This approach provides:
 
 == Next Steps
 
-In this lab we built some a common security control into our image, and we also applied a compliance policy at build time! 
+In this lab we built some a common security controls into our image, and we also applied a compliance policy at build time! 
 
 Thank you for completing this lab!
